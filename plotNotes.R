@@ -1,11 +1,16 @@
 # User Inputs
 folder <- 87
-file_number <- 9
+file_number <- 10
 
 # Get data from file
 
 file_name <- paste(folder,"-",file_number,sep="")
-dir <- "C:/Users/Jim Tai/Documents/GitHub/Project-Spinosa/Data Visualization - Music Notation/HOMUS/"
+
+if (Sys.info()[1]=="Linux"){
+  dir <- "/home/jim/Documents/Project-Spinosa/Data Visualization - Music Notation/HOMUS/"
+} else if (Sys.info()[1]=="Windows") {
+  dir <- "C:/Users/Jim Tai/Documents/GitHub/Project-Spinosa/Data Visualization - Music Notation/HOMUS/"
+}
 
 subdirectory <- paste(dir,folder,"/",sep="")
 setwd(subdirectory)
@@ -28,5 +33,5 @@ output <- do.call("rbind",lapply(split(raw_output, seq(nrow(raw_output))),extrac
 # Plot the coordinate points
 plot_size <- max(output$x,output$y) + 5
 
-plot(0:plot_size,-plot_size:0,type="n")
-points(output$x, -output$y, col="black", cex=0.5)
+plot(0:plot_size,-plot_size:0,type="n", main=colnames(raw_output))
+points(output$x, -output$y, col="black", cex=0.2)
