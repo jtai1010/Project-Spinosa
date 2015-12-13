@@ -1,6 +1,6 @@
 # User Inputs
 folder <- 87
-file_number <- 10
+file_number <- 9
 
 # Get data from file
 
